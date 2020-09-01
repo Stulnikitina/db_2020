@@ -15,11 +15,6 @@ public class MyArrayInteger implements DynamicIntegerArray {
 
     @Override
     public int get(int index) {
-
-        if(index > (this.size() - 1) || index < 0) {
-           System.out.println("Wrong index");
-           return -1;
-        }
         return this.array.get(index);
     }
 

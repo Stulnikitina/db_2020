@@ -12,8 +12,9 @@ public class MyStart {
 
         System.out.println(arr);
 
+        System.out.println(arr.size());
 
-        //System.out.println("asddfdfs");
+        System.out.println(arr.get(1));
 
     }
 }
