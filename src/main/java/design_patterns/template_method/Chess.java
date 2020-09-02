@@ -23,7 +23,7 @@ public class Chess extends AbstractGame<ChessPlayer> {
 
     @Override
     protected List<Pair> calcBestScores() {
-        return List.of(new Pair("Vasyliy 2",40));
+        return null;
     }
 
     @Override
