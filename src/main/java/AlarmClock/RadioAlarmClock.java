@@ -2,11 +2,11 @@ package AlarmClock;
 
 import javax.xml.crypto.Data;
 
-public class RadioAlarmClock extends AlarmClock implements RadioImpl{
+public class RadioAlarmClock extends AlarmClock implements Radio{
 
     @Override
     public void Awake() {
-        
+
     }
 
     @Override

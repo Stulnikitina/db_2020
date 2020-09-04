@@ -2,7 +2,7 @@ package AlarmClock;
 
 import javax.xml.crypto.Data;
 
-public interface RadioImpl {
+public interface Radio {
 
     void RemotelySetVolume(int volume);
     void RemotelyIncreaseVolume(int volume);
