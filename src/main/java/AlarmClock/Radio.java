@@ -2,16 +2,16 @@ package AlarmClock;
 
 import javax.xml.crypto.Data;
 
-public interface Radio {
+public interface Radio extends R {
 
-    void RemotelySetVolume(int volume);
-    void RemotelyIncreaseVolume(int volume);
-    void RemotelyDecreaseVolume(int volume);
+    void remotelySetVolume(int volume);
+    void remotelyIncreaseVolume(int volume);
+    void remotelyDecreaseVolume(int volume);
 
-    void RemotelyTurnOffAlarm();
+    void remotelyTurnOffAlarm();
 
-    void RemotelySetSoundType(int type);
+    void remotelySetSoundType(int type);
 
-    void RemotelySetDate(Data data);
+    void remotelySetDate(Data data);
 
 }

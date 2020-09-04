@@ -15,16 +15,16 @@ public abstract class AlarmClock {
 
     private Data awakeTime;
 
-    public abstract void Awake();
+    public abstract void awake();
     //если время подъема, то играть мелодию
     //метод абстрактный,
     //так как разные модели будильников могут и начать вибрировать,
     //замерять пульс и тд
     //и для всего этого нужно нити
 
-    public abstract void TurnOffAlarm();
+    public abstract void turnOffAlarm();
 
-    public void IncreaseVolume(int volume) {
+    public void increaseVolume(int volume) {
         soundPower += volume;
     }
 

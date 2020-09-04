@@ -10,13 +10,14 @@ public class RadioAlarmClock extends AlarmClock implements Radio{
     private RadioImpl radio = new RadioImpl();
 
     @Override
-    public void Awake() {
+    public void awake() {
 
     }
 
     @Override
-    public void TurnOffAlarm() {
+    public void turnOffAlarm() {
 
     }
+
 
 }

@@ -4,32 +4,37 @@ import javax.xml.crypto.Data;
 
 public class RadioImpl implements Radio{
     @Override
-    public void RemotelySetVolume(int volume) {
+    public void remotelySetVolume(int volume) {
 
     }
 
     @Override
-    public void RemotelyIncreaseVolume(int volume) {
+    public void remotelyIncreaseVolume(int volume) {
 
     }
 
     @Override
-    public void RemotelyDecreaseVolume(int volume) {
+    public void remotelyDecreaseVolume(int volume) {
 
     }
 
     @Override
-    public void RemotelyTurnOffAlarm() {
+    public void remotelyTurnOffAlarm() {
 
     }
 
     @Override
-    public void RemotelySetSoundType(int type) {
+    public void remotelySetSoundType(int type) {
 
     }
 
     @Override
-    public void RemotelySetDate(Data data) {
+    public void remotelySetDate(Data data) {
+
+    }
+
+    @Override
+    public void r() {
 
     }
 }
