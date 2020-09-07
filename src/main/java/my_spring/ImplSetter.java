@@ -1,6 +1,9 @@
 package my_spring;
 
+import lombok.SneakyThrows;
 import org.reflections.Reflections;
+
+import java.util.Set;
 
 public class ImplSetter {
 
@@ -10,7 +13,10 @@ public class ImplSetter {
         this.reflections = new Reflections(s);
     }
 
+    @SneakyThrows
     public <T> Class<? extends T> getImpl(Class<T> type) {
-        return reflections.getSubTypesOf(type).iterator().next();
+        Set<Class<? extends T>> setImpl = reflections.getSubTypesOf(type);
+        if(setImpl.size() == 0) throw new Exception("no have implementation");
+        return setImpl.iterator().next();
     }
 }
