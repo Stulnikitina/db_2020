@@ -1,33 +1,67 @@
 package my_spring;
 
 import lombok.SneakyThrows;
+import org.reflections.ReflectionUtils;
+import org.reflections.Reflections;
+
+import javax.annotation.PostConstruct;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class ObjectFactory {
 
+    private ApplicationContext context;
 
-//    private Map<Class, Class> ifc2ImplClass = Map.of(Speaker.class, ConsoleSpeaker.class)
+    private List<ObjectConfigurer> objectConfigurers = new ArrayList<>();
 
-    private ImplSetter implSetter = new ImplSetter("./");
-
-    private static ObjectFactory objectFactory = new ObjectFactory();
-
-    private ObjectFactory() {
-    }
-
-    public static ObjectFactory getInstance() {
-        return objectFactory;
-    }
+    private Reflections scanner;
 
     @SneakyThrows
-    public <T> T createObject(Class<T> type) {
+    ObjectFactory(ApplicationContext context, Reflections scanner) {
+        this.scanner = scanner;
+        this.context = context;
 
-        Class<? extends T> helpClass;
-        if(type.isInterface()){
-            helpClass = implSetter.getImpl(type);
-        } else {
-            helpClass = type;
+        Set<Class<? extends ObjectConfigurer>> classes = scanner.getSubTypesOf(ObjectConfigurer.class);
+        for (Class<? extends ObjectConfigurer> aClass : classes) {
+            if (!Modifier.isAbstract(aClass.getModifiers())) {
+                objectConfigurers.add(aClass.getDeclaredConstructor().newInstance());
+            }
         }
-
-        return helpClass.getDeclaredConstructor().newInstance();
     }
+
+
+    @SneakyThrows
+    public <T> T createObject(Class<T> implClass) {
+
+        T t = create(implClass);
+        configure(t);
+        invokeInitMethod(implClass, t);
+        return t;
+    }
+
+
+    private <T> void invokeInitMethod(Class<? extends T> implClass, T t) throws IllegalAccessException, InvocationTargetException {
+        Set<Method> methods = ReflectionUtils.getAllMethods(implClass);
+        for (Method method : methods) {
+            if (method.isAnnotationPresent(PostConstruct.class)) {
+                method.invoke(t);
+
+            }
+        }
+    }
+
+    private <T> void configure(T t) {
+        objectConfigurers.forEach(objectConfigurer -> objectConfigurer.configure(t,context));
+    }
+
+    private <T> T create(Class<? extends T> implClass) throws InstantiationException, IllegalAccessException, java.lang.reflect.InvocationTargetException, NoSuchMethodException {
+        return implClass.getDeclaredConstructor().newInstance();
+    }
+
+
 }
+

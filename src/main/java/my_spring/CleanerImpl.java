@@ -1,9 +1,17 @@
 package my_spring;
 
+import javax.annotation.PostConstruct;
+
 public class CleanerImpl implements Cleaner {
 
-    //@InjectRandomInt(min=3,max=10)
-    private int repeat = 3;
+
+    @InjectRandomInt(min = 3, max = 10)
+    private int repeat;
+
+    @PostConstruct
+    public void init() {
+        System.out.println("repeat = " + repeat);
+    }
 
     @Override
     public void clean() {

@@ -1,10 +1,25 @@
 package my_spring;
 
 
+import javax.annotation.PostConstruct;
+
 public class IRobot {
 
-    private Speaker speaker = ObjectFactory.getInstance().createObject(Speaker.class);
-    private Cleaner cleaner = ObjectFactory.getInstance().createObject(CleanerImpl.class);
+    @InjectRandomInt(max = 10, min = 1)
+    private int version;
+
+    @InjectByType
+    private Speaker speaker;
+    @InjectByType
+    private Cleaner cleaner;
+
+
+    @PostConstruct
+    public void init() {
+        System.out.println("version = " + version);
+
+    }
+
 
     public void cleanRoom() {
         speaker.speak("Я начал уборку");
