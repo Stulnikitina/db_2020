@@ -1,7 +1,8 @@
 package real_spring;
 
 import lombok.Setter;
-//import my_spring.InjectRandomInt;
+import my_spring.InjectRandomInt;
+
 
 public class ShakespeareQuoter implements Quoter {
     @Setter

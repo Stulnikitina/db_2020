@@ -10,7 +10,7 @@
         <constructor-arg value="trust me!"/>
     </bean>
 
-    <bean id="injectRandomInt" class="real_spring.InjectRandomIntAnnotationBeanPostProcessor"/>
+    <bean id="InjectRandomInt" class="real_spring.InjectRandomIntAnnotationBeanPostProcessor"/>
 
 
     <bean id="talkingRobot" class="real_spring.TalkingRobotImpl">
