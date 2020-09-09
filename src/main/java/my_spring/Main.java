@@ -9,6 +9,7 @@ public class Main {
 
         Map<Class<?>, Class<?>> map = new HashMap<>();
         map.put(Speaker.class, ConsoleSpeaker.class);
+        map.put(Cleaner.class, BenchMarkCleanerImpl.class);
 
 
         JavaConfig config = new JavaConfig(map, "my_spring");
